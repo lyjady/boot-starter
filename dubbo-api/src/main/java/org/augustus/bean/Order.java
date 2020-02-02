@@ -1,0 +1,55 @@
+package org.augustus.bean;
+
+import java.io.Serializable;
+
+/**
+ * @author LinYongJin
+ * @date 2020/2/2 18:59
+ */
+public class Order implements Serializable {
+
+    private Long id;
+
+    private String name;
+
+    private Double price;
+
+    public Order(Long id, String name, Double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+}
