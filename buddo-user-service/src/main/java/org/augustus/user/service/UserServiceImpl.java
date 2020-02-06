@@ -2,6 +2,7 @@ package org.augustus.user.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.augustus.bean.Order;
 import org.augustus.bean.ReceiveAddress;
 import org.augustus.service.OrderService;
@@ -9,6 +10,8 @@ import org.augustus.service.UserService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -31,7 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "orderCallback")
     public List<Order> findOrderInfo(Long id) {
         return orderService.findOrderInfo(id);
+    }
+
+    public List<Order> orderCallback(Long id) {
+        return Collections.singletonList(new Order(1L, "fall callback", 0.0));
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    @Reference
+    @Reference(check = false)
     private UserService userService;
 
     @RequestMapping("/findOrder/{userId}")
